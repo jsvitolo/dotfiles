@@ -1,35 +1,35 @@
 return {
   {
     "nvim-treesitter/nvim-treesitter",
-    build = ":TSUpdate",
     lazy = false,
+    build = ":TSUpdate",
     config = function()
-      local parsers = {
+      require("nvim-treesitter").install({
+        "elixir",
+        "eex",
+        "heex",
+        "erlang",
+        "bash",
         "lua",
-        "vim",
-        "vimdoc",
-        "javascript",
-        "typescript",
-        "html",
-        "css",
-        "json",
-        "yaml",
+        "luadoc",
         "markdown",
         "markdown_inline",
-        "bash",
-        "python",
-        "go",
-        "rust",
-        "elixir",
-        "erlang",
-      }
+        "yaml",
+      })
 
-      require("nvim-treesitter").install(parsers)
-
+      -- Enable treesitter highlighting
       vim.api.nvim_create_autocmd("FileType", {
-        pattern = "*",
+        pattern = { "elixir", "eex", "heex", "erlang", "bash", "lua", "markdown", "yaml" },
         callback = function()
-          pcall(vim.treesitter.start)
+          vim.treesitter.start()
+        end,
+      })
+
+      -- Enable treesitter indentation
+      vim.api.nvim_create_autocmd("FileType", {
+        pattern = { "elixir", "eex", "heex", "erlang", "bash", "lua", "markdown", "yaml" },
+        callback = function()
+          vim.bo.indentexpr = "v:lua.require'nvim-treesitter'.indentexpr()"
         end,
       })
     end,
