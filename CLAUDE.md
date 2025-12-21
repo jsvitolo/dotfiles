@@ -27,6 +27,7 @@ stow -R nvim
 - **tmux/**: Tmux configuration → symlinks to `~/.config/tmux/`
 - **zsh/**: Zsh configuration → symlinks to `~/` (`.zshrc`, `.p10k.zsh`)
 - **ghostty/**: Ghostty terminal configuration → symlinks to `~/.config/ghostty/`
+- **yazi/**: Yazi file manager configuration → symlinks to `~/.config/yazi/`
 
 The directory structure inside each package mirrors the target location. For example:
 - `tmux/.config/tmux/tmux.conf` → `~/.config/tmux/tmux.conf`
@@ -54,9 +55,25 @@ The directory structure inside each package mirrors the target location. For exa
 - `gg` - lazygit (alias)
 - `c` - clear (alias)
 
+### Yazi
+- `g h` - go to home directory
+- `g c` - go to ~/.config
+- `g d` - go to Downloads
+- `g .` - go to dotfiles
+- `Ctrl+h` - toggle hidden files
+- `Ctrl+s` - open shell in current directory
+- `Ctrl+n` - create file/directory
+- `Space` or `v` - toggle selection
+- `y` - yank (copy)
+- `x` - cut
+- `p` - paste
+- `d` - delete
+- `r` - rename
+
 ## External Dependencies
 
 - **tmux**: TPM (Tmux Plugin Manager), catppuccin theme, vim-tmux-navigator
 - **zsh**: Zinit (plugin manager), Powerlevel10k, fzf, zoxide, asdf
 - **ghostty**: Ghostty terminal emulator
+- **yazi**: Yazi file manager with Catppuccin Mocha theme
 - **sesh + fzf**: Required for session picker (tmux `prefix + T` and zsh `s` alias)
