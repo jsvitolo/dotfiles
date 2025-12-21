@@ -77,3 +77,40 @@ The directory structure inside each package mirrors the target location. For exa
 - **ghostty**: Ghostty terminal emulator
 - **yazi**: Yazi file manager with Catppuccin Mocha theme
 - **sesh + fzf**: Required for session picker (tmux `prefix + T` and zsh `s` alias)
+- **nvim**: Neovim 0.11+, tree-sitter-cli
+
+## Neovim Setup
+
+### Requisitos
+
+O nvim-treesitter (branch `main`) requer:
+
+- Neovim 0.11+
+- tree-sitter-cli
+
+```bash
+# Instalar tree-sitter-cli (macOS)
+brew install tree-sitter
+```
+
+### Instalar Parsers
+
+Apos instalar o tree-sitter-cli, abra o Neovim e rode:
+
+```vim
+:TSInstall elixir eex heex erlang bash lua markdown yaml
+```
+
+Ou via Lua:
+
+```vim
+:lua require("nvim-treesitter").install({"elixir", "eex", "heex", "erlang", "bash", "lua", "markdown", "yaml"})
+```
+
+### Verificar Instalacao
+
+```vim
+:checkhealth nvim-treesitter
+```
+
+Deve mostrar todos os parsers instalados e sem erros.
