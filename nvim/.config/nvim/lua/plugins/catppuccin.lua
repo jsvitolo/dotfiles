@@ -1,50 +1,72 @@
 return {
-    {
-      "catppuccin/nvim",
-      lazy = false,
-      name = "catppuccin",
-      priority = 1000,
-      config = function()
-        require("catppuccin").setup({
-          transparent_background = true,
-          integrations = {
-            telescope = {
-              enabled = true,
+  {
+    "catppuccin/nvim",
+    lazy = false,
+    name = "catppuccin",
+    priority = 1000,
+    config = function()
+      require("catppuccin").setup({
+        flavour = "mocha",
+        transparent_background = true,
+        show_end_of_buffer = false,
+        term_colors = true,
+        no_italic = false,
+        no_bold = false,
+        integrations = {
+          treesitter = true,
+          gitsigns = true,
+          snacks = true,
+          native_lsp = {
+            enabled = true,
+            underlines = {
+              errors = { "undercurl" },
+              hints = { "undercurl" },
+              warnings = { "undercurl" },
+              information = { "undercurl" },
             },
           },
-        })
-        vim.cmd.colorscheme "catppuccin-mocha"
+          indent_blankline = { enabled = true },
+          which_key = true,
+          mason = true,
+        },
+        highlight_overrides = {
+          mocha = function(colors)
+            return {
+              -- Snacks picker (transparent)
+              SnacksPickerInput = { bg = "NONE" },
+              SnacksPickerInputBorder = { bg = "NONE", fg = colors.surface1 },
+              SnacksPickerList = { bg = "NONE" },
+              SnacksPickerListBorder = { bg = "NONE", fg = colors.surface1 },
+              SnacksPickerPreview = { bg = "NONE" },
+              SnacksPickerPreviewBorder = { bg = "NONE", fg = colors.surface1 },
+              SnacksPickerMatch = { fg = colors.peach, bold = true },
+              SnacksPickerDir = { fg = colors.overlay1 },
+              SnacksPickerFile = { fg = colors.text },
+              SnacksPickerTitle = { fg = colors.base, bg = colors.blue, bold = true },
 
-        -- Transparent backgrounds for floating windows
-        local function set_transparent_hl()
-          local hl = vim.api.nvim_set_hl
+              -- Explorer (transparent)
+              SnacksExplorerNormal = { bg = "NONE" },
 
-          -- Telescope
-          hl(0, "TelescopeNormal", { bg = "NONE" })
-          hl(0, "TelescopeBorder", { bg = "NONE", fg = "#89b4fa" })
-          hl(0, "TelescopePromptNormal", { bg = "NONE" })
-          hl(0, "TelescopePromptBorder", { bg = "NONE", fg = "#89b4fa" })
-          hl(0, "TelescopePromptTitle", { bg = "NONE", fg = "#94e2d5" })
-          hl(0, "TelescopeResultsNormal", { bg = "NONE" })
-          hl(0, "TelescopeResultsBorder", { bg = "NONE", fg = "#89b4fa" })
-          hl(0, "TelescopeResultsTitle", { bg = "NONE", fg = "#94e2d5" })
-          hl(0, "TelescopePreviewNormal", { bg = "NONE" })
-          hl(0, "TelescopePreviewBorder", { bg = "NONE", fg = "#89b4fa" })
-          hl(0, "TelescopePreviewTitle", { bg = "NONE", fg = "#94e2d5" })
+              -- Floating windows (transparent)
+              NormalFloat = { bg = "NONE" },
+              FloatBorder = { bg = "NONE", fg = colors.surface1 },
+              FloatTitle = { fg = colors.base, bg = colors.blue, bold = true },
 
-          -- Lazy and floating windows
-          hl(0, "LazyNormal", { bg = "NONE" })
-          hl(0, "LazyBackdrop", { bg = "NONE" })
-          hl(0, "NormalFloat", { bg = "NONE" })
-          hl(0, "FloatBorder", { bg = "NONE", fg = "#89b4fa" })
-          hl(0, "FloatTitle", { bg = "NONE", fg = "#94e2d5" })
-        end
+              -- Lazy (transparent)
+              LazyNormal = { bg = "NONE" },
 
-        set_transparent_hl()
+              -- Cursor line
+              CursorLine = { bg = colors.surface0 },
+              CursorLineNr = { fg = colors.lavender, bold = true },
 
-        vim.api.nvim_create_autocmd("ColorScheme", {
-          callback = set_transparent_hl,
-        })
-      end
-    }
-  }
+              -- Line numbers
+              LineNr = { fg = colors.surface1 },
+            }
+          end,
+        },
+      })
+
+      vim.cmd.colorscheme "catppuccin"
+    end,
+  },
+}
