@@ -13,6 +13,7 @@ return {
         no_italic = false,
         no_bold = false,
         integrations = {
+          blink_cmp = true,
           treesitter = true,
           gitsigns = true,
           snacks = true,
@@ -54,6 +55,12 @@ return {
 
               -- Lazy (transparent)
               LazyNormal = { bg = "NONE" },
+
+              -- Blink.cmp (transparent)
+              BlinkCmpMenu = { bg = "NONE" },
+              BlinkCmpMenuBorder = { bg = "NONE", fg = colors.surface1 },
+              BlinkCmpDoc = { bg = "NONE" },
+              BlinkCmpDocBorder = { bg = "NONE", fg = colors.surface1 },
 
               -- Cursor line
               CursorLine = { bg = colors.surface0 },
