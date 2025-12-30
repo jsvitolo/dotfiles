@@ -100,3 +100,9 @@ export FZF_DEFAULT_OPTS="
 "
 
 alias s='sesh connect $(sesh list -c | fzf)'
+
+
+## Functions
+k-secrets() {
+    kubectl get secrets "$@" -ojson | jq '{name: .metadata.name, data: .data | map_values(@base64d)}'
+  }
