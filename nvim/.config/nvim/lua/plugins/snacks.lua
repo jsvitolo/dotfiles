@@ -15,6 +15,18 @@ return {
   keys = {
     -- Explorer
     { "<leader>e", function() Snacks.explorer() end, desc = "Explorer" },
+    {
+      "<leader>o",
+      function()
+        local explorer = Snacks.picker.get({ source = "explorer" })[1]
+        if explorer then
+          explorer:focus("list")
+        else
+          Snacks.explorer()
+        end
+      end,
+      desc = "Focus Explorer",
+    },
 
     -- Git
     { "<leader>gg", function() Snacks.lazygit() end, desc = "Lazygit" },
@@ -32,6 +44,7 @@ return {
     { "<leader>/", function() Snacks.picker.grep() end, desc = "Grep" },
     { "<leader>sw", function() Snacks.picker.grep_word() end, desc = "Grep Word", mode = { "n", "x" } },
     { "<leader>sb", function() Snacks.picker.lines() end, desc = "Buffer Lines" },
+    { "<leader>ss", function() Snacks.picker.lsp_symbols() end, desc = "Document Symbols" },
 
     -- Buffers
     { "<leader>bb", function() Snacks.picker.buffers() end, desc = "Buffers" },
