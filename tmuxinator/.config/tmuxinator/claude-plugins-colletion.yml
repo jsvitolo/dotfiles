@@ -1,0 +1,7 @@
+name: claude-plugins-colletion
+root: ~/Developer/Personal/claude-plugins/claude-plugins-colletion
+
+windows:
+  - editor: nvim
+  - claude: claude
+  - shell:

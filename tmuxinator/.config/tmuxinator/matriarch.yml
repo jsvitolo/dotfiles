@@ -1,0 +1,8 @@
+name: matriarch
+root: ~/Developer/Infleet/matriarch
+
+windows:
+  - editor: nvim
+  - git: lazygit
+  - claude: claude
+  - shell:
