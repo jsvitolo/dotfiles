@@ -106,3 +106,4 @@ alias s='sesh connect $(sesh list -c | fzf)'
 k-secrets() {
     kubectl get secrets "$@" -ojson | jq '{name: .metadata.name, data: .data | map_values(@base64d)}'
   }
+eval "$(direnv hook zsh)"
