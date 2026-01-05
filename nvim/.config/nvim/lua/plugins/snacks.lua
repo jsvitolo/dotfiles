@@ -3,12 +3,17 @@ return {
   priority = 1000,
   lazy = false,
   opts = {
-    explorer = { enabled = true },
+    explorer = {
+      enabled = true,
+      hidden = true,
+      ignored = true,
+    },
     notifier = { enabled = true, timeout = 3000 },
     picker = {
       enabled = true,
       sources = {
-        files = { hidden = true },
+        files = { hidden = true, ignored = true },
+        explorer = { hidden = true, ignored = true },
       },
     },
   },
