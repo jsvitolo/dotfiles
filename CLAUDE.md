@@ -4,7 +4,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Overview
 
-This is a dotfiles repository managed with GNU Stow. Each top-level directory (nvim, tmux) is a "stow package" that mirrors the target directory structure under `~/.config/`.
+This is a dotfiles repository managed with GNU Stow. Each top-level directory (nvim, tmux, tmuxinator) is a "stow package" that mirrors the target directory structure under `~/.config/`.
 
 ## Using GNU Stow
 
@@ -12,10 +12,12 @@ This is a dotfiles repository managed with GNU Stow. Each top-level directory (n
 # Deploy a package (creates symlinks in ~/.config/)
 stow nvim
 stow tmux
+stow tmuxinator
 
 # Remove a package
 stow -D nvim
 stow -D tmux
+stow -D tmuxinator
 
 # Restow (useful after changes)
 stow -R nvim
@@ -25,6 +27,7 @@ stow -R nvim
 
 - **nvim/**: Neovim configuration → symlinks to `~/.config/nvim/`
 - **tmux/**: Tmux configuration → symlinks to `~/.config/tmux/`
+- **tmuxinator/**: Tmuxinator session configs → symlinks to `~/.config/tmuxinator/`
 - **zsh/**: Zsh configuration → symlinks to `~/` (`.zshrc`, `.p10k.zsh`)
 - **ghostty/**: Ghostty terminal configuration → symlinks to `~/.config/ghostty/`
 - **yazi/**: Yazi file manager configuration → symlinks to `~/.config/yazi/`
@@ -73,6 +76,7 @@ The directory structure inside each package mirrors the target location. For exa
 ## External Dependencies
 
 - **tmux**: TPM (Tmux Plugin Manager), catppuccin theme, vim-tmux-navigator
+- **tmuxinator**: Tmux session manager (Ruby gem)
 - **zsh**: Zinit (plugin manager), Powerlevel10k, fzf, zoxide, asdf
 - **ghostty**: Ghostty terminal emulator
 - **yazi**: Yazi file manager with Catppuccin Mocha theme
