@@ -1,0 +1,8 @@
+name: bronzebeard
+root: /Users/jonesvitolo/Developer/Infleet/bronzebeard
+
+windows:
+  - claude: claude
+  - editor: nvim
+  - git: lazygit
+  - shell:
