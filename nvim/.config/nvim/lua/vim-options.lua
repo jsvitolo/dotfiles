@@ -15,6 +15,7 @@ vim.keymap.set('n', '<c-l>', ':wincmd l<CR>')
 
 vim.keymap.set('n', '<leader>h', ':nohlsearch<CR>')
 vim.wo.number = true
+vim.opt.clipboard = "unnamedplus"
 
 -- Filetype detection for .env files
 vim.filetype.add({
