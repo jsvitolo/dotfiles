@@ -1,0 +1,8 @@
+name: meridian
+root: ~/Developer/Infleet/meridian
+
+windows:
+  - claude: claude
+  - editor: nvim
+  - git: lazygit
+  - shell:
