@@ -88,6 +88,7 @@ eval "$(fzf --zsh)"
 eval "$(zoxide init --cmd cd zsh)"
 
 export PATH="${ASDF_DATA_DIR:-$HOME/.asdf}/shims:$PATH"
+export PATH="$PATH:$(go env GOPATH)/bin"
 
 export HOMEBREW_NO_ENV_HINTS=1
 
@@ -107,3 +108,6 @@ k-secrets() {
     kubectl get secrets "$@" -ojson | jq '{name: .metadata.name, data: .data | map_values(@base64d)}'
   }
 eval "$(direnv hook zsh)"
+
+# Load secrets (API keys, tokens, etc.) - not tracked in git
+[[ -f ~/.secrets ]] && source ~/.secrets
