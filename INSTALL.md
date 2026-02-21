@@ -27,19 +27,31 @@ brew install stow git
 ### Terminal e Shell
 
 ```bash
-brew install tmux neovim zsh
+brew install tmux neovim zsh direnv
 ```
 
 ### Ferramentas CLI
 
 ```bash
-brew install fzf zoxide lazygit fd ripgrep bat tree
+brew install fzf zoxide lazygit fd ripgrep bat tree glow watch
 ```
 
-### Gerenciadores de Sessao e Git
+### Monitores de Sistema
 
 ```bash
-brew install sesh gitmux tmuxinator
+brew install btop htop
+```
+
+### Gerenciadores de Sessao
+
+```bash
+brew install sesh tmuxinator
+```
+
+### GitHub CLI
+
+```bash
+brew install gh
 ```
 
 ### Kubernetes e Cloud
@@ -48,64 +60,108 @@ brew install sesh gitmux tmuxinator
 brew install awscli kubernetes-cli kubectx
 ```
 
-### Node.js (para plugins do Neovim)
+### Node.js e Python
 
 ```bash
-brew install node
+brew install node uv
 ```
 
-### Pacotes npm globais
+### File Manager (Yazi)
 
 ```bash
-npm install -g live-server
-```
-
-### File Manager
-
-```bash
-brew install yazi ffmpegthumbnailer poppler
+brew install yazi ffmpegthumbnailer poppler sevenzip
 ```
 
 ### Neovim Dependencies
 
 ```bash
-brew install tree-sitter
+brew install tree-sitter-cli
 ```
 
-### Todos de uma vez
-
-```bash
-brew install stow git tmux neovim zsh fzf zoxide lazygit fd ripgrep bat tree sesh gitmux tmuxinator awscli kubernetes-cli kubectx node yazi ffmpegthumbnailer poppler tree-sitter asdf
-```
-
-## Terminal Emulator
-
-### Ghostty
-
-```bash
-brew install --cask ghostty
-```
-
-## Fontes
-
-### JetBrainsMono Nerd Font
-
-```bash
-brew install --cask font-jetbrains-mono-nerd-font
-```
-
-## Gerenciadores de Versao
-
-### asdf
+### Gerenciador de Versoes
 
 ```bash
 brew install asdf
 ```
 
-Adicione ao final do `.zshrc` (ja incluido neste dotfiles):
+### AI CLIs
 
 ```bash
-export PATH="${ASDF_DATA_DIR:-$HOME/.asdf}/shims:$PATH"
+brew install gemini-cli
+```
+
+### Utilitarios
+
+```bash
+brew install treemd
+```
+
+### Todos de uma vez
+
+```bash
+brew install stow git tmux neovim direnv fzf zoxide lazygit fd ripgrep bat tree glow watch btop htop sesh tmuxinator gh awscli kubernetes-cli kubectx node uv yazi ffmpegthumbnailer poppler sevenzip tree-sitter-cli asdf gemini-cli treemd
+```
+
+## Aplicativos (Casks)
+
+### Terminal Emulator
+
+```bash
+brew install --cask ghostty
+```
+
+### Fontes
+
+```bash
+brew install --cask font-jetbrains-mono-nerd-font font-hack-nerd-font
+```
+
+### Desenvolvimento
+
+```bash
+brew install --cask cursor jetbrains-toolbox
+```
+
+### Containers
+
+```bash
+brew install --cask orbstack
+```
+
+### API Testing
+
+```bash
+brew install --cask postman
+```
+
+### AI Apps
+
+```bash
+brew install --cask claude chatgpt
+```
+
+### Navegador
+
+```bash
+brew install --cask google-chrome
+```
+
+### Produtividade
+
+```bash
+brew install --cask notion
+```
+
+### VPN
+
+```bash
+brew install --cask pritunl
+```
+
+### Todos os casks de uma vez
+
+```bash
+brew install --cask ghostty font-jetbrains-mono-nerd-font font-hack-nerd-font cursor jetbrains-toolbox orbstack postman claude chatgpt google-chrome notion pritunl
 ```
 
 ## Instalacao dos Dotfiles
@@ -121,7 +177,7 @@ cd ~/.dotfiles
 
 ```bash
 # Todos os pacotes
-stow zsh tmux nvim ghostty yazi
+stow zsh tmux nvim ghostty yazi tmuxinator
 
 # Ou individualmente
 stow zsh
@@ -129,6 +185,7 @@ stow tmux
 stow nvim
 stow ghostty
 stow yazi
+stow tmuxinator
 ```
 
 ## Configuracoes Pos-Instalacao
@@ -141,6 +198,16 @@ Os plugins (powerlevel10k, zsh-syntax-highlighting, etc.) tambem sao instalados 
 ```bash
 # Trocar shell padrao para zsh
 chsh -s $(which zsh)
+```
+
+### Secrets (API Keys)
+
+Crie um arquivo para suas chaves de API (nao commitado):
+
+```bash
+touch ~/.secrets
+chmod 600 ~/.secrets
+echo 'export ANTHROPIC_API_KEY="sua-chave"' >> ~/.secrets
 ```
 
 ### Tmux
@@ -183,6 +250,22 @@ Ou execute manualmente:
 p10k configure
 ```
 
+### asdf
+
+Adicione ao final do `.zshrc` (ja incluido neste dotfiles):
+
+```bash
+export PATH="${ASDF_DATA_DIR:-$HOME/.asdf}/shims:$PATH"
+```
+
+### direnv
+
+Ja configurado no `.zshrc` com:
+
+```bash
+eval "$(direnv hook zsh)"
+```
+
 ## Estrutura dos Pacotes
 
 | Pacote | Destino |
@@ -192,26 +275,33 @@ p10k configure
 | `nvim/` | `~/.config/nvim/` |
 | `ghostty/` | `~/.config/ghostty/` |
 | `yazi/` | `~/.config/yazi/` |
+| `tmuxinator/` | `~/.config/tmuxinator/` |
 
 ## Resumo de Comandos
 
 ```bash
 # Instalacao completa (copie e cole)
 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
-brew install stow git tmux neovim zsh fzf zoxide lazygit fd ripgrep bat tree sesh gitmux tmuxinator awscli kubernetes-cli kubectx node yazi ffmpegthumbnailer poppler tree-sitter asdf
-brew install --cask ghostty font-jetbrains-mono-nerd-font
-npm install -g live-server
+
+# Formulae
+brew install stow git tmux neovim direnv fzf zoxide lazygit fd ripgrep bat tree glow watch btop htop sesh tmuxinator gh awscli kubernetes-cli kubectx node uv yazi ffmpegthumbnailer poppler sevenzip tree-sitter-cli asdf gemini-cli treemd
+
+# Casks
+brew install --cask ghostty font-jetbrains-mono-nerd-font font-hack-nerd-font cursor jetbrains-toolbox orbstack postman claude chatgpt google-chrome notion pritunl
 
 # Clone e deploy
 git clone https://github.com/SEU_USUARIO/dotfiles.git ~/.dotfiles
 cd ~/.dotfiles
-stow zsh tmux nvim ghostty yazi
+stow zsh tmux nvim ghostty yazi tmuxinator
 
 # TPM
 git clone https://github.com/tmux-plugins/tpm ~/.config/tmux/plugins/tpm
 
 # Trocar shell
 chsh -s $(which zsh)
+
+# Secrets
+touch ~/.secrets && chmod 600 ~/.secrets
 ```
 
 ## Troubleshooting
@@ -230,7 +320,7 @@ stow zsh
 Verifique se tree-sitter-cli esta instalado:
 
 ```bash
-brew install tree-sitter
+brew install tree-sitter-cli
 ```
 
 ### Tmux: plugins nao carregam
@@ -241,4 +331,12 @@ Reinstale o TPM e os plugins:
 rm -rf ~/.config/tmux/plugins
 git clone https://github.com/tmux-plugins/tpm ~/.config/tmux/plugins/tpm
 # Abra tmux e pressione prefix + I
+```
+
+### Yazi: previews nao funcionam
+
+Instale as dependencias opcionais:
+
+```bash
+brew install ffmpegthumbnailer poppler sevenzip
 ```
