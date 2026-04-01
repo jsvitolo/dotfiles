@@ -31,6 +31,7 @@ stow -R nvim
 - **zsh/**: Zsh configuration → symlinks to `~/` (`.zshrc`, `.p10k.zsh`)
 - **ghostty/**: Ghostty terminal configuration → symlinks to `~/.config/ghostty/`
 - **yazi/**: Yazi file manager configuration → symlinks to `~/.config/yazi/`
+- **lazygit/**: Lazygit configuration → symlinks to `~/Library/Application Support/lazygit/`
 
 The directory structure inside each package mirrors the target location. For example:
 - `tmux/.config/tmux/tmux.conf` → `~/.config/tmux/tmux.conf`

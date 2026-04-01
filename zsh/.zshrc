@@ -85,6 +85,7 @@ zinit cdreplay -q
 
 # Shell integrations
 eval "$(fzf --zsh)"
+export _ZO_DOCTOR=0
 eval "$(zoxide init --cmd cd zsh)"
 
 export PATH="${ASDF_DATA_DIR:-$HOME/.asdf}/shims:$PATH"
@@ -107,6 +108,30 @@ alias s='sesh connect $(sesh list -c | fzf)'
 k-secrets() {
     kubectl get secrets "$@" -ojson | jq '{name: .metadata.name, data: .data | map_values(@base64d)}'
   }
+
+infleet-env() {
+  local env_file=".env.$1"
+  
+  if [[ -z "$1" ]]; then
+    echo "Uso: infleet-env <local|homolog|sandbox>"
+    echo "Atual: ${INFLEET_ENV:-nenhum}"
+    return 1
+  fi
+  
+  if [[ ! -f "$env_file" ]]; then
+    echo "❌ Arquivo $env_file não encontrado"
+    return 1
+  fi
+  
+  set -a  # auto-export das variáveis
+  source "$env_file"
+  set +a
+  
+  export INFLEET_ENV=$1
+  echo "🔄 Ambiente: $1"
+}
+
+##############################3
 eval "$(direnv hook zsh)"
 
 # Load secrets (API keys, tokens, etc.) - not tracked in git
